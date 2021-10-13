@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: static
+  name: vamsi
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: static-deployment
-  namespace: static
+  name: vamsi-deployment
+  namespace: vamsi
   labels:
     app: static
 spec:
@@ -29,8 +29,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: static-svc
-  namespace: static
+  name: vamsi-svc
+  namespace: vamsi
 spec:
   selector:
     app: static
@@ -43,17 +43,17 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: static-ingress
-  namespace: static
+  name: vamsi-ingress
+  namespace: vamsi
   annotations:
     kubernetes.io/ingress.class: static
 spec:
  rules:
- - host: static.jyoismav.com
+ - host: vamsi.jyoismav.com
    http:
      paths:
      - path:  /
        backend:
-         serviceName: static-svc
+         serviceName: vamsi-svc
          servicePort: 80
 
